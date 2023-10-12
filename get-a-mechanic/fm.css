@@ -13,16 +13,21 @@ a {
 }
 
 .logo {
-    color: goldenrod;
+    color: green;
     font-weight: bold;
+    font-size: 30px;
     text-transform: uppercase;
 }
 
 nav {
     display: flex;
     padding: 10px;
-    background-color: white;
+    background-color: #adb5bd;
     justify-content: space-between;
+    font-family: 'Playfair Display', serif;
+}
+.header-list {
+    font-size: 20px;
 }
 
 button {
@@ -86,9 +91,9 @@ span {
     }
 
     .group-mechanics {
-        display: none;
-        /* display: flex;
+        /* display: none; */
+        display: flex;
         flex-direction: row;
-        flex-wrap: wrap; */
+        flex-wrap: wrap;
     }
 }
