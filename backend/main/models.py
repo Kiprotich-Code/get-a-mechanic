@@ -9,6 +9,10 @@ class RequestMech(models.Model):
     expected_time = models.IntegerField()
     expected_budget = models.IntegerField()
     mech = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now = True)
+
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return f'{self.car_owner} at {self.location}'
