@@ -7,6 +7,9 @@ from .models import RequestMech
 def base(request):
     return render(request, 'base.html')
 
+def user_home(request):
+    return render(request, 'car_owners/user_home.html')
+
 # Car-owner views
 def request_mech(request):
     if request.method == 'POST':
@@ -28,5 +31,6 @@ class ReqList(generic.ListView):
 
 class ReqDetails(generic.DetailView):
     model = RequestMech
-    template_name = 'car_owners/req_detail.htnl'
+    template_name = 'car_owners/req_detail.html'
+    context_object_name = 'request'
     

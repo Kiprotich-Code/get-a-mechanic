@@ -1,0 +1,15 @@
+{% extends '../base.html'%}
+
+{% block content %}
+    <div class="container">
+        <h3>This is The Details Page</h3>
+        <div class="p-2">
+            <p class="fw-light">{{request.car_owner}}</p>
+            <p class="fw-light">{{request.location}}</p>
+            <p class="fw-light">{{request.car_issue}}</p>
+            <p class="fw-light">{{request.priority}}</p>
+            <p class="fw-light">{{request.expected_budget}}</p>
+            <p class="fw-light">{{request.mech}}</p>
+        </div>
+    </div>
+{% endblock %}
