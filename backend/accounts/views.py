@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 # Create your views here.
 def register_user(request):
@@ -41,13 +43,16 @@ def register_mech(request):
 
 def signin(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)
-
+            if user.profile.is_first_login:
+                update_profile_url = reverse('update_profile')
+                return redirect(update_profile_url)
+            
             # redirect users based on roles
             if user.user_type == 'car_owner':
                 return redirect('user_home')
@@ -67,3 +72,32 @@ def signin(request):
 def logout_user(request):
     logout(request)
     return redirect('base')
+
+
+# view for profile 
+def update_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            frm = form.save(commit=False)
+            request.user.profile.is_first_login = False
+            frm.save()
+            if request.user.user_type == 'car_owner':
+                return redirect('user_home')
+            
+            elif request.user.user_type == 'mechanic':
+                return redirect('req_list')
+            
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    return render(request, 'accounts/update_profile.html', {'form': form})
+
+def view_profile(request, user_id):
+    user = CustomUser.objects.get(id=user_id)
+
+    context = {
+        'user': user
+    }
+    return render(request, 'accounts/view_profile.html', context)
+
+

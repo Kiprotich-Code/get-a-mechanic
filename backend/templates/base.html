@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +17,23 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'base'%}">Home</a>
-              </li>
+              {% if user.user_type == 'car_owner'%}
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'user_home'%}">Home</a>
+                </li>
+                {% elif user.user_type == 'mechanic'%}
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'req_list'%}">Home</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'base'%}">Home</a>
+                </li>
+                {% endif %}
               {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout'%}">Logout</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+                </li>
               {% else %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

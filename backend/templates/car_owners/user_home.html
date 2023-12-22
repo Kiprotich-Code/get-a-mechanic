@@ -1,5 +1,17 @@
 {% extends '../base.html'%}
 
 {% block content %}
-    <h2>This is the User's homepage.</h2>
+    <div class="p-3">
+        <h3 class="small">
+            <a href="{% url 'mech_list' %}" class="btn btn-outline-primary">
+                Request Mechanic
+            </a>
+            <a href="" class="btn btn-outline-primary">
+                View Profile
+            </a>
+            <a href="" class="btn btn-outline-primary">
+                View My Requests
+            </a>
+        </h3>
+    </div>
 {% endblock %}
