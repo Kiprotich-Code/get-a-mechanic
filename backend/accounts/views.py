@@ -77,16 +77,17 @@ def logout_user(request):
 # view for profile 
 def update_profile(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=request.user.profile)
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             frm = form.save(commit=False)
             request.user.profile.is_first_login = False
             frm.save()
-            if request.user.user_type == 'car_owner':
-                return redirect('user_home')
-            
-            elif request.user.user_type == 'mechanic':
+
+            if request.user.user_type == 'mechanic':
                 return redirect('req_list')
+            
+            else:
+                return redirect('user_home')
             
     else:
         form = ProfileForm(instance=request.user.profile)

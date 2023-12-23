@@ -17,4 +17,4 @@ class MechanicRegisterForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['phone_no', 'about', 'location', ]
+        fields = ['profile_pic', 'phone_no', 'about', 'location', ]

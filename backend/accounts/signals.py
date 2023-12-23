@@ -15,6 +15,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(user_logged_in)
 def first_login_handler(sender, user, request, **kwargs):
     # Check if user profile is complete 
-    if not user.profile.about or not user.profile.full_names:
+    if not user.profile.about or not user.profile.location:
         update_profile_url = reverse('update_profile')
         return redirect(update_profile_url)

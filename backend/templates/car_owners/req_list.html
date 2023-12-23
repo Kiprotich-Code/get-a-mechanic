@@ -3,15 +3,21 @@
 {% block content %}
    <div class="row p-md-3">
     <div class="col-md-8">
-        <h3 class="small fw-lighter">Primary</h3>
+        <h3 class="small fw-lighter">Primary</h3>{{user.full_names}}
+        {% if requests %}
         {% for request in requests %}
         <a class="card text-decoration-none text-inherit mb-3" href="{% url 'req_details' pk=request.id%}">
             <div class="card-body">
+                <h3 class="card-text small">From: {{request.car_owner}}</h3>
+                <h3 class="card-text small">To: {{request.mech}}</h3>
                 <h3 class="card-text small">{{request.car_owner}} - {{request.location}}</h3>
                 <p class="card-text small">{{request.created_at}}</p>
             </div>
         </a>
         {% endfor %}
+        {% else %}
+            <h3 class="small">There's nothing here at the moment.</h3>
+        {% endif %}
     </div>
     <div class="col-md-4">
 

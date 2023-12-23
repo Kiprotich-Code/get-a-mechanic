@@ -3,7 +3,11 @@
 {% block content %}
 <div class="p-3">
     <h3 class="small">{{user.full_names}}</h3>
+    <h3 class="small">
+        <img src="{{user.profile.profile_pic.url }}" alt="Image" style="width: 400px;">
+    </h3>
     <h3 class="small">{{user.email}}</h3>
+    <h3 class="small">{{user.user_type}}</h3>
     <h3 class="small">{{user.profile.phone_no}}</h3>
     <h3 class="small">{{user.profile.location}}</h3>
 </div>

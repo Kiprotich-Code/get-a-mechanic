@@ -25,10 +25,11 @@ class CustomUser(AbstractUser):
     
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    profile_pic = models.ImageField(default='avatar.png', upload_to='profile_pics/')
     phone_no = models.IntegerField(default = 0)
     about = models.TextField(max_length=200, blank=True)
     location = models.CharField(max_length=100)
     is_first_login = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.full_names
+        return self.user.full_names

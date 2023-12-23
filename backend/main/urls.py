@@ -7,7 +7,7 @@ urlpatterns = [
 
     # Car owners urls 
     path('request_mech/<mech_id>', views.request_mech, name='request_mech'),
-    path('req_list/', views.ReqList.as_view(), name='req_list'),
+    path('req_list/', views.req_list, name='req_list'),
     path('req_details/<int:pk>', views.ReqDetails.as_view(), name='req_details'),
 
     # list mechanics

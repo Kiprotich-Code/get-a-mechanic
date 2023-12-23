@@ -2,7 +2,25 @@
 {% load static %}
 
 {% block content %}
-    <div class="row justify-content-around">
+    <!-- hero sec with search and ctas  -->
+    <div class="container-fluid d-md-flex gap-3 bg-dark p-md-5 p-4">
+      <!-- search field  -->
+      <div class="col-md-8">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Enter your location to get mechanics near you" aria-label="Search">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>
+      </div><br>
+
+      <!-- ctas  -->
+      <button class="btn btn-primary mx-auto">Use Map</button>
+      <button class="btn btn-primary">View all</button>
+    </div>
+
+    <!-- list of all Mechanics  -->
+    <div class="row gap-3">
+      <h3 class="fw-light text-center p-2 border-bottom border-2">List of available mechanics</h3>
+    {% if mechs %}
     {% for mech in mechs %}
     <div class="card m-3 col-md-3 col-10">
         <div class="card-body">
@@ -16,4 +34,7 @@
       </div>
     {% endfor %}
     </div>
+    {% else %}
+      <h3 class="small p-3">There are no Mechanics are the moment!</h3>
+    {% endif %}
 {% endblock %}

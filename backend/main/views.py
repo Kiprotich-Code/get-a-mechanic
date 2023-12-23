@@ -31,10 +31,14 @@ def request_mech(request, mech_id):
     context = {'form': form}
     return render(request, 'car_owners/request_mech.html', context)
 
-class ReqList(generic.ListView):
-    model = RequestMech
-    template_name = 'car_owners/req_list.html'
-    context_object_name = 'requests'
+def req_list(request):
+    context = {}
+    usr = request.user
+    requests = RequestMech.objects.filter(mech=usr)
+
+    context['requests'] = requests
+    return render(request, 'car_owners/req_list.html', context)
+
 
 class ReqDetails(generic.DetailView):
     model = RequestMech
